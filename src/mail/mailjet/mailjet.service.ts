@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CommandBus } from '@nestjs/cqrs';
-import mailjet, { Email } from 'node-mailjet';
+import { Email, connect } from 'node-mailjet';
 
 import { SendEmailDto } from './dto/send-email.dto';
 import { emailTemplates } from '../templates/email-templates';
@@ -12,14 +12,15 @@ import { IEmailObject } from '../interfaces/email-object.interface';
 
 @Injectable()
 export class MailjetService {
+  private mailjetClient: Email.Client;
+
   constructor(
     private configService: ConfigService,
     private readonly commandBus: CommandBus,
-    private mailjetClient: Email.Client,
   ) {
-    mailjetClient = mailjet.connect(
-      this.configService.get('MJ_APIKEY_PUBLIC'),
-      this.configService.get('MJ_APIKEY_PRIVATE'),
+    this.mailjetClient = connect(
+      this.configService.get('MJ_APIKEY_PUBLIC') || 'missing',
+      this.configService.get('MJ_APIKEY_PRIVATE') || 'missing',
     );
   }
 

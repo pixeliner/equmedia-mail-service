@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-import { emailTemplates } from '../../templates/email-templates';
+import { emailTemplates } from '../../mail/templates/email-templates';
 
 export class EmailTemplateTable1608476268427 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
