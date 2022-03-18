@@ -19,8 +19,8 @@ export class MailjetService {
     private readonly commandBus: CommandBus,
   ) {
     this.mailjetClient = connect(
-      this.configService.get('MJ_APIKEY_PUBLIC') || 'missing',
-      this.configService.get('MJ_APIKEY_PRIVATE') || 'missing',
+      this.configService.get('MJ_APIKEY_PUBLIC'),
+      this.configService.get('MJ_APIKEY_SECRET'),
     );
   }
 
