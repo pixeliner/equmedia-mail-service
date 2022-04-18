@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CommandBus } from '@nestjs/cqrs';
-import mailjet, { Email } from 'node-mailjet';
+import { Email, connect } from 'node-mailjet';
 
 import { SendEmailDto } from './dto/send-email.dto';
 import { emailTemplates } from '../templates/email-templates';
@@ -12,14 +12,15 @@ import { IEmailObject } from '../interfaces/email-object.interface';
 
 @Injectable()
 export class MailjetService {
+  private mailjetClient: Email.Client;
+
   constructor(
     private configService: ConfigService,
     private readonly commandBus: CommandBus,
-    private mailjetClient: Email.Client,
   ) {
-    mailjetClient = mailjet.connect(
+    this.mailjetClient = connect(
       this.configService.get('MJ_APIKEY_PUBLIC'),
-      this.configService.get('MJ_APIKEY_PRIVATE'),
+      this.configService.get('MJ_APIKEY_SECRET'),
     );
   }
 
@@ -35,7 +36,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: confirmAccountEmailTemplate.subject,
       TextPart: confirmAccountEmailTemplate.text,
       HTMLPart: `<a href="${this.configService.get(
@@ -75,7 +76,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: forgotPasswordEmailTemplate.subject,
       TextPart: forgotPasswordEmailTemplate.text,
       HTMLPart: `<a href="${this.configService.get(
@@ -116,7 +117,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: setNewPasswordEmailTemplate.subject,
       TextPart: setNewPasswordEmailTemplate.text,
     };
@@ -154,7 +155,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: confirmSubscriptionEmailTemplate.subject,
       TextPart: confirmSubscriptionEmailTemplate.text,
     };
@@ -194,7 +195,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: deleteAccountEmailTemplate.subject,
       TextPart: deleteAccountEmailTemplate.text,
     };
