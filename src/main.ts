@@ -11,7 +11,7 @@ async function bootstrap() {
     microserviceOptions,
   );
 
-  app.listen().then(() => {
+  await app.listen().then(() => {
     logger.log('Microservice is listening');
   });
 }

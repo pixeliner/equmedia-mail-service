@@ -36,7 +36,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: confirmAccountEmailTemplate.subject,
       TextPart: confirmAccountEmailTemplate.text,
       HTMLPart: `<a href="${this.configService.get(
@@ -76,7 +76,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: forgotPasswordEmailTemplate.subject,
       TextPart: forgotPasswordEmailTemplate.text,
       HTMLPart: `<a href="${this.configService.get(
@@ -117,7 +117,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: setNewPasswordEmailTemplate.subject,
       TextPart: setNewPasswordEmailTemplate.text,
     };
@@ -155,7 +155,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: confirmSubscriptionEmailTemplate.subject,
       TextPart: confirmSubscriptionEmailTemplate.text,
     };
@@ -195,7 +195,7 @@ export class MailjetService {
 
     const message: IMailjetEmail = {
       To: [{ Email: user_email }],
-      From: { Email: 'info@equmedia.be', Name: 'Equmedia' },
+      From: { Email: 'peter@pixeliner.com', Name: 'Equmedia' },
       Subject: deleteAccountEmailTemplate.subject,
       TextPart: deleteAccountEmailTemplate.text,
     };
